@@ -19,20 +19,32 @@
   }
 
 body {
-    /*background-image: url("./Images/Background.svg") no-repeat center center/cover;*/
-    background-color: rgba(162, 210, 255, 0.15);
-    margin-top: 0;
-    font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    align-items: center;
-    height: 100vh;
-    margin-top: 150px;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(162, 210, 255, 0.15);
+  min-height: 100vh;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#container-title {
+#main-area {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding-top: 50px;;
+  overflow: hidden; /* Avoid unintentional content overflow */
+  width: 100%;
+  justify-content: center;
+}
+
+#container-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -49,26 +61,76 @@ body {
   font-family: "SFUI-Bold", sans-serif;
   color: #0F0E26;
   font-size: 48px;
-  width: 500px;
+  width: 60%;
   text-align: center;
+  font-size: 5vw; /* Scales based on screen width */
+}
+
+@media (min-width: 768px) {
+  #title {
+      font-size: 48px; /* Fixed size for larger devices */
+  }
+}
+
+@media (max-width: 480px) {
+  #title {
+      font-size: 24px; /* Smaller size for small devices */
+  }
+}
+
+@media (max-width: 768px) {
+  #input-container, #task-container.active {
+      width: 95%;
+  }
+
+  #title {
+      font-size: 24px; /* Smaller font size for small devices */
+  }
 }
 
 #blue-title {
   color: #359BFA;
 }
 
-#input-taskname {
+#task-area {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+}
+
+#input-container {
+  width: 80%;
+  max-width: 600px;
+  overflow: hidden; 
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  background-color: #fff;
+  gap: 10px;
+}
+
+#text-input {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   width: 100%;
 }
 
 #task-input {
+  width: 100%;
   border:none;
   font-family: "SFUI-Medium", sans-serif;
   font-size: 16px;
   color: #0e0e0e;
   width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
+  white-space: wrap;
   box-sizing: border-box;
   text-align: left;
 }
@@ -78,24 +140,43 @@ body {
   border: none; 
 }
 
-#task-input::placeholder {
-  color: #878889;
-  opacity: 50%;
-  font-size: 16px;
-  font-family: "SFUI-Medium", sans-serif;
+#task-description {
+  width: 100%; 
+  max-width: 100%; 
+  resize: none; 
+  box-sizing: border-box; 
+  font-family: "SFUI-regular", sans-serif;
+  font-weight: lighter;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 12px;
+  border: none;
+  outline: none;
+  overflow: auto;
+  height: 30px;
 }
 
-#input-container {
+
+#dividing-line {
+  border: 0.5px solid rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+#button-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  width: 100%;
   align-items: center;
-  padding: 16px;
-  border: 0.5px solid rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  width: 398px;
-  background-color: #fff;
-  gap: 8px;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.clear-button {
+  background-color: #EFEFEF;
+  border: none;
+  width: 76px;
+  padding: 8px 16px;  font-size: 10px;
+  font-family: "SFUI-Semi-bold", sans-serif;
+  border-radius: 4px;
 }
 
 #add-task-button {
@@ -115,39 +196,14 @@ body {
   cursor: pointer;
 }
 
-#task-area {
+#todo-area {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  align-items: center;
-}
-
-#task-description {
-  width: 398px;
-  height: 50px;
-  padding: 16px;
-  border: 0.5px solid rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  width: 398px;
-  background-color: #fff;
-  resize: none;
-  font-family: "SFUI-regular", sans-serif;
-  font-weight: lighter;
-  color: rgba(0, 0, 0, 0.5);
-  font-size: 16px;
-}
-
-#task-description::placeholder {
-  color: #878889;
-  opacity: 50%;
-  font-size: 16px;
-  font-family: "SFUI-Medium", sans-serif;
-  
-}
-
-#task-description:focus {
-  outline: none;
-  border: none; 
+  gap: 16px;
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-top: 24px;
+  width: 100%;
 }
 
 #todo-area-heading {
@@ -160,23 +216,18 @@ body {
 }
 
 #todo-header {
-  font-size: 24px;
+  font-size: 20px;
   font-family: "SFUI-Bold", sans-serif;
   margin: 0;
   padding: 0;
-
+  line-height: 0;
 }
+
 #todo-subheader {
   font-size: 16px;
   font-family: "SFUI-regular", sans-serif;
   color: rgba(165, 166, 167, 100);
   font-weight: lighter;
-  margin: 0;
-  padding: 0;
-}
-
-#todo-header,
-#todo-subheader {
   margin: 0;
   padding: 0;
   line-height: 0;
@@ -191,9 +242,9 @@ body {
   transition: background-color 0.3s ease, border-color 0.3s ease; 
 }
 
-.check-circle.checked {
-  background-color: #359BFA;  
-  border-color: #359BFA;      
+.check-circle:hover {
+  background-color: #c1c1c1;  
+  border-color: #c1c1c1;      
 }
 
 .task-name {
@@ -203,6 +254,7 @@ body {
   font-size: 16px;
   padding: 0;
   margin: 0;
+  width: 100%;
 }
 
 .task-check-name-description {
@@ -213,15 +265,13 @@ body {
 }
 
 #task-container.active {
-  padding: 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 621px;
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px;
   background-color: #fff;
   border: 0.7px solid rgba(0, 0, 0, 0.2);
   border-radius: 8px;
-
 }
 
 .task-list {
@@ -233,13 +283,7 @@ body {
   padding-bottom: 16px;
   border-bottom: 0.7px solid rgba(0, 0, 0, 0.2);
   align-items: center;
-}
-
-#todo-area {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  
+  margin-top: 8px;
 }
 
 .delete-task {
@@ -252,6 +296,7 @@ body {
   color: #fff;
   width: 90px;
   height: 30px;
+  cursor: pointer;
 }
 
 .task-input-description {
@@ -276,15 +321,6 @@ body {
 
 }
 
-#button-container {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 4px;
-}
-
 .clear-button {
   background-color: #EFEFEF;
   border: none;
@@ -292,5 +328,20 @@ body {
   padding: 8px 16px;  font-size: 10px;
   font-family: "SFUI-Semi-bold", sans-serif;
   border-radius: 4px;
+}
+
+
+#task-container.active {
+  width: 80%;
+  max-width: 600px; 
+  overflow: hidden; 
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  background-color: #fff;
+  gap: 10px;
 }
 
