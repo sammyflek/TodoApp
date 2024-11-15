@@ -5,17 +5,17 @@
 
   @font-face {
     font-family: "SFUI-medium";
-    src: url("./Fontfiles/SFUI/SFUIText-Medium.ttf");
+    src: url("https://github.com/sammyflek/TodoApp/blob/main/fonts/SFUIText-Medium.ttf");
   }
 
   @font-face {
     font-family: "SFUI-regular";
-    src: url("./Fontfiles/SFUI/SFUIText-Regular.ttf");
+    src: url("https://github.com/sammyflek/TodoApp/blob/main/fonts/SFUIText-Regular.ttf");
   }
 
   @font-face {
     font-family: "SFUI-Semi-bold";
-    src: url("./Fontfiles/SFUI/SFUIText-Semibold.ttf");
+    src: url("https://github.com/sammyflek/TodoApp/blob/main/fonts/SFUIText-Semibold.ttf");
   }
 
 body {
