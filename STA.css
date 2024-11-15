@@ -21,7 +21,7 @@
 body {
     /*background-image: url("./Images/Background.svg") no-repeat center center/cover;*/
     background-color: rgba(162, 210, 255, 0.15);
-
+    margin-top: 0;
     font-weight: bold;
     display: flex;
     flex-direction: column;
