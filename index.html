@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+   <head>
+          <meta charset="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>Samuel's javascript to-do website</title>
+          <link rel="icon" href="favicon.ico" type="image/x-icon">
+          <link href="STA.css" rel="stylesheet"/>
+   </head>
+   <body>
+       <div id="main-area">
+              <div id="container-header">
+              <div id="logo">
+                     <img src="./Images/comment-check_17720271 1.svg" alt="Website logo" class="logo">
+              </div>
+              <div id="title">Samuel’s Javascript <span id="blue-title">To-do WebApp</span></div>  
+              </div>
+              <div id="task-area">
+                     <div id="input-container">
+                            <div id="text-input">
+                                <input type="text" id="task-input" placeholder="Task name">
+                                <textarea name="description" id="task-description" placeholder="Task description"></textarea>
+                            </div>
+
+                            <div id="dividing-line"></div>
+
+                            <div id="button-container">
+                                   <button id="add-task-button" disabled>Add task</button>
+                            </div>
+                     </div>
+                     
+                     <div id="todo-area">
+                            <div id="todo-area-heading">
+                                   <div id="todo-header"><p>Today's tasks</p></div><div id="todo-subheader"><p>Your task list is currently empty</p></div>
+                            </div>
+                            <div id="task-container">
+                                   
+                            </div>
+                     </div>
+              </div> 
+       </div> 
+       <script src="STA.js" defer></script>
+   </body>
+</html>
